@@ -1,0 +1,9 @@
+====Query Triger===== 4 juli 2014
+DELIMITER $$
+CREATE TRIGGER main_proses after INSERT ON main_proses
+ FOR EACH ROW BEGIN
+ INSERT INTO main_history_proses (id_proses, tanggal_mulai, tanggal_selesai, id_prosedur)
+ VALUES (NEW.id, NEW.tanggal_mulai, NEW.tanggal_selesai, 
+(select id from main_tahap where id_prosedur = NEW.id_prosedur order by urutan asc limit 1));
+ END;
+$$

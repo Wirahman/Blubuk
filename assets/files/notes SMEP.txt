@@ -1,0 +1,20 @@
+Notifikasi:
+- input perencanaan
+  ada tombol "FINAL", jika belum diklik pengeditan apapun tidak dianggap revisi, jika sudah diklik FINAL pengeditan selanjutnya dianggap revisi
+  contoh ada pdf page 19
+- input perencanaan (1x revisi)
+- input realisasi
+  realisasi di page 24 adalah detil dari 1 baris di tabel page 19
+  value di page 19 (misal B1 = April 20%) adalah hasil perhitungan dari input page 24, diambil dari bulan terakhir dan progressnya
+  jadi April 20% bisa jadi muncul karena misalnya user menginput page 24 dengan nilai: januari 10% -> februari 40% -> maret 80% -> april 100% (nilai persentase dari bulan januari-april harus increment) dan nilai persentase di bulan terakhir (april) menjadi acuan pengisian value di page 19 ---> 20% april diisi karena input detil 100% (100% dari 20% di kolom perencanaan)
+  constraint:
+  - inputan di kelompok B (pelaksanaan) baru bisa diinput ketika semua value di kelompok B mencapai 100% sesuai perencanaan
+  - misal kelompok A (persiapan) bulan terakhirnya selesai pada agustus, lalu mau nginput kelompok B (pelaksanaan), sekarang bulan oktober, maka ketika mau ngisi detil (seperti page 24) pilihan bulan yg bisa diinput persentasenya adalah agustus-september-oktober. Beda dengan kelompok A (persiapan), ketika ngisi persentase pilihan bulannya adalah dari januari sampai bulan sekarang (current_month)
+
+2013-12-01
+Untuk melihat detil pekerjaan, bisa dicapai melalui 2 URL, contoh
+- http://localhost/smep/index.php/pekerjaan/index# -> ini ketika lihat 1 kegiatan lalu breakdown anggarannya apa saja, ketika breakdown menggunakan AJAX dengan href="#"
+- http://localhost/smep/index.php/pekerjaan/index/?id=4 -> ini loading seluruh kegiatan dulu lalu seolah-olah user mengklik 1 kegiatan
+Hal di atas berlaku juga untuk anggaran, dengan URL contoh:
+- http://localhost/smep/index.php/anggaran/index#
+- http://localhost/smep/index.php/anggaran/index/?id=4

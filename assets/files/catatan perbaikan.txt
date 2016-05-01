@@ -1,0 +1,41 @@
+input program baru bisa tahun ini dan tahun depannya.
+
+pilihan yang di atas juga data tahun ini, tahun depan, dan lima tahun ke belakang
+
+kegiatan ketika ganti tahun masih terlihat semua
+
+kode program dobel diperbolehkan.
+	referensi-referensi program - kegiatan lewat id saja jangan lewat kode
+
+istilah fase menjadi tahapan
+istilah jumlah (perencanaan) menjadi "jumlah anggaran"
+rencana menjadi anggaran
+
+
+realisasi tri wulan dahulu baru potensi realisasi
+
+hitungan tri wulan salah.
+
+kata klasifikasi anggaran menjadi Kelompok belanja
+
+
+capaian rencana dan realisasi numeric
+
+
+tambah satuan capaian realisasi: unit, set, exemplar, bulan, triwulan, hari
+
+
+aspek layanan dibakukan menjadi:
+jumlah pengunjung
+	stasioner gedung
+	stasioner bergerak
+	virtual
+jumlah anggota
+jumlah peminjam koleksi
+	stasioner gedung
+	stasioner bergerak
+	virtual
+jumlah buku yang dipinjam
+	stasioner gedung
+	stasioner bergerak
+	virtual

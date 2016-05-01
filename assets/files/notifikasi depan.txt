@@ -1,0 +1,24 @@
+dashboard
+
+1. jumlah kegiatan
+1a. jumlah kegiatan dalam fase persiapan
+1b. jumlah kegiatan dalam fase pelaksanaan
+1c. jumlah kegiatan dalam fase penyelesaian
+
+2. Realisasi Anggaran
+2a Realisasi bulan ini
+2b Persen realisasi anggaran
+
+
+__________________   __________________
+|   1   |   2a   |   |   3a  |   3b   |
+|_______|________|   |_______|________|
+|   2   |   2b   |
+|_______|________|
+__________________
+| 1a |  1b |  1c |
+
+
+3. Notifikasi
+3a. Jumlah kegiatan belum direalisasi anggaran
+3b. Jumlah kegiatan belum direalisasi pelaksanaan

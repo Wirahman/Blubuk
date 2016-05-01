@@ -1,0 +1,13 @@
+Library JS:
+- colorbox : gallery, add table reference
+- bootbox: delete table reference
+- jquery UI dialog: lock/unlock anggaran kegiatan & pekerjaan
+- blueimp: ajax upload (plus gallery)
+
+Highchart:
+
+Paging:
+
+Ajax:
+
+Privilege:
