@@ -32,7 +32,7 @@
                 ?> 
             </div>                                                                                        
             <div class="item-details">
-                <span><?= $status->isi ?></span>
+                <span id="status_isi"><?= $status->isi ?></span>
             </div>
             <br></br>
             <form action="home/komentar_status" method="post" id="form_komentar_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
@@ -130,3 +130,11 @@
         </div>
     </div>
 </div>
+
+<script src="<?php echo base_url(); ?>assets/chat/ajaxku_chat.php?base_url=<?php echo base_url(); ?>"></script>
+
+<script type="text/javascript">
+	var statusIsi = document.getElementById('status_isi');
+    var stringStatusIsi = statusIsi.innerHTML;
+    statusIsi.innerHTML = renderEmot(stringStatusIsi);
+</script>

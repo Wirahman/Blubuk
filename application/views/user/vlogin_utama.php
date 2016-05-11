@@ -155,7 +155,7 @@
                             <div class="alert alert-success display-hide"></div>
                             <div class="alert alert-info display-hide"><i class="fa fa-spin fa-refresh"></i> Pembuatan Akun Sedang Diproses...</div>
                             <!-- BEGIN FORM-->
-                            <form action = "/user/pendaftaran_user_utama" method="post" id="form_pendaftaran" autocomplete="off" class="form-horizontal">
+                            <form action = "<?php echo site_url('user/pendaftaran_user_utama'); ?>" method="post" id="form_pendaftaran" autocomplete="off" class="form-horizontal">
                                 <div class="form-body">
                                     <div class="form-group">
                                         <label class="control-label col-md-3"><span class="required"></span></label>
