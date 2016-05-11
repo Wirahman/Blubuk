@@ -84,7 +84,7 @@
                                                     <?= $row->nama_lengkap ?>
 
                                                     <a class="green" 
-                                                    href="<?php echo base_url() . '/admin/tampil_pencarian/' . $row->id; ?>" 
+                                                    href="<?php echo base_url() . 'admin/tampil_pencarian/' . $row->id; ?>" 
                                                     data-toggle="modal" data-target="#tampil_pencarian"> 
                                                         <button class="btn btn-info btn-success">
                                                             <i class="fa fa-eye"></i> Lihat
@@ -92,7 +92,7 @@
                                                     </a>
 
                                                     <a class="green" 
-                                                    href="<?php echo base_url() . '/admin/banned_user/' . $row->id; ?>" 
+                                                    href="<?php echo base_url() . 'admin/banned_user/' . $row->id; ?>" 
                                                     data-toggle="modal" data-target="#banned_user"> 
                                                         <button class="btn btn-danger btn-danger">
                                                             <i class="fa fa-minus"></i> Banned

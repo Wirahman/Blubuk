@@ -5,16 +5,32 @@
             <a class="close" href="<?php echo site_url('admin/chat_publik') ?>"></a>                                                                              
             <span class="user-info">
                 <?php
-                if ($chat->foto_profil1 == null) {
-                    echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                if ($chat->foto_profil1 == $this->session->userdata('foto')){
+                    if ($chat->foto_profil2 == null) {
+                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                    }else{
+                        $fname = $chat->foto_profil2;
+                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                    }
                 }else{
-                    $fname = $chat->foto_profil1;
-                    echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                    if ($chat->foto_profil1 == null) {
+                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                    }else{
+                        $fname = $chat->foto_profil1;
+                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                    }
                 }
+
                ?>                                                                                        
             </span>
-            <?php echo $chat->nama1 ?>
-            <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($chat->waktu)) ?></span>
+            <?php 
+            if ($chat->nama1 == $this->session->userdata('username')){
+                echo $chat->nama2;
+            }else{
+                echo $chat->nama1;
+            }
+            ?>
+            <!-- <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($chat->waktu)) ?></span> -->
         </div>
 
         <div class="modal-body">
@@ -31,10 +47,10 @@
                 }
                 ?> 
             </div>                                                                                    
-            <div class="item-details">
+            <!-- <div class="item-details">
                 <span><?= $chat->message ?></span>
             </div>
-            <br></br>
+            <br></br> -->
             <form action="balas_chat" method="post" id="form_chat_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-body">
                                      
@@ -42,7 +58,7 @@
                 <div class="portlet-title">
                     <div class="caption caption-md">
                         <i class="icon-bar-chart theme-font hide"></i>
-                        <span class="caption-subject theme-font bold uppercase">Pesan</span>
+                        <!-- <span class="caption-subject theme-font bold uppercase">Pesan</span> -->
                     </div>
                 </div>
                                

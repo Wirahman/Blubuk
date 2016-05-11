@@ -56,7 +56,7 @@ $(document).ready(function()
 // function add emot to chat form
 function addemot(emot)
 {
-	message.value+=" "+emot;
+	isi_forum.value+=" "+emot;
 }
 
 var emotImageMap = {

@@ -133,7 +133,7 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a class="green" 
-                                                        href="<?php echo base_url() . '/admin/unbanned_user/' . $row->id; ?>" 
+                                                        href="<?php echo base_url() . 'admin/unbanned_user/' . $row->id; ?>" 
                                                         data-toggle="modal" data-target="#unbanned_user">Unbanned                                                                        
                                                         </a>
                                                     </td>

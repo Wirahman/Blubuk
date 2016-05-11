@@ -84,7 +84,7 @@
                                                     <?= $row->nama_lengkap ?>
 
                                                     <a class="green" 
-                                                    href="<?php echo base_url() . '/home/tampil_pencarian/' . $row->id; ?>" 
+                                                    href="<?php echo base_url() . 'home/tampil_pencarian/' . $row->id; ?>" 
                                                     data-toggle="modal" data-target="#tampil_pencarian"> 
                                                         <button class="btn btn-info btn-success">
                                                             <i class="fa fa-eye"></i> Lihat

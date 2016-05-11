@@ -1,50 +1,36 @@
-<input type="hidden" id="id_tampil_pencarian" value="<?php echo $pencarian->id; ?>">
+<input type="hidden" id="id_tampil_teman" value="<?php echo $teman->id; ?>">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header green">
-            <form action="tampil_pencarian" method="post" id="form_pertemanan" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">        
+            <form action="hapus_teman" method="post" id="form_pertemanan" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">        
                 <div class="form-body">
 
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>                                                                                
+                    <a class="close" href="<?php echo site_url('/admin/teman') ?>"></a>                                                                                
                     <span class="user-info">
                         <?php
-                        if ($pencarian->foto == null) {
+                        if ($teman->foto_profil == null) {
                             echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
                         }else{
-                            $fname = $pencarian->foto;
+                            $fname = $teman->foto_profil;
                             echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
                         }
                        ?>                                                                                        
                     </span>
-                    <?php 
-                    $userid1 = $pencarian->id;
-                    $userid2 = $this->session->userdata('userid');
+                    <?php echo $teman->name ?>
 
-                    $sql_cek_teman = mysql_query("SELECT * FROM users WHERE id = $userid2 LIMIT $userid2"); 
-                    while($row=mysql_fetch_array($sql_cek_teman)) { 
-                        $array_teman = $row["teman"];
-                    }
-                    $teman = explode(",", $array_teman);
+                    <br>
+                    <br>
 
-                    if ($array_teman != $pencarian->id) { 
-                        echo '
-                            <button class="btn btn-success">
-                                <i class="fa fa-plus"></i> Tambah Teman
-                            </button>
-                            ';
-                    } 
-                    else {
-                        
-                    }
-
-                    ?>
+                    <button class="btn btn-danger">
+                        <i class="fa fa-minus"></i> Hapus Pertemanan
+                    </button>    
 
                     <div class="input-icon right">
-                        <input type="hidden" id="userid1" name="userid1" class="userid1"  value="<?= $pencarian->id ?>">
+                        <input type="hidden" id="userid1" name="userid1" class="userid1"  value="<?= $id ?>">
                     </div>
 
                     <div class="input-icon right">
-                        <input type="hidden" id="userid2" name="userid2" class="userid2"  value="<?= $this->session->userdata('userid') ?>">
+                        <input type="hidden" id="userid2" name="userid2" class="userid2"  value="<?= $teman->id ?>">
                     </div>
                             
                 </div>             
@@ -53,12 +39,12 @@
         </div>
 
         <div class="modal-body">
-            <!-- <form action="home/komentar" method="post" id="form_komentar_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data"> -->      
+            <!-- <form action="admin/komentar" method="post" id="form_komentar_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data"> -->      
                 <div class="row">
-                    <input id="id" name="id" type="hidden" value="<?= $pencarian->id ?>">
+                    <input id="id" name="id" type="hidden" value="<?= $biografi->id ?>">
                     <div class="col-md-6">
                        <?php
-                        $fname = $pencarian->foto;
+                        $fname = $biografi->foto;
                         echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="200" height="150" />'; // substr, ngilangin ./
                        ?>
                     </div>
@@ -68,7 +54,7 @@
 
                             <div class="input-icon right">
                                 <i class="fa"></i>
-                                <input id="nama_lengkap" name="nama_lengkap" type="text" class="form-control" placeholder="Nama Lengkap"  value="<?= $pencarian->nama_lengkap ?>" readonly="true">
+                                <input id="nama_lengkap" name="nama_lengkap" type="text" class="form-control" placeholder="Nama Lengkap"  value="<?= $biografi->nama_lengkap ?>" readonly="true">
                             </div>
                         </div>
                     </div>
@@ -79,9 +65,9 @@
 
                             <div class="input-icon right">
                                 <i class="fa"></i>
-                                <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" value="<?= $pencarian->jenis_kelamin ?>" disabled="true">
-                                    <option value="L" <?php echo $pencarian->jenis_kelamin == 'L' ? 'selected' : ''; ?>>Laki-laki</option>
-                                    <option value="P" <?php echo $pencarian->jenis_kelamin == 'P' ? 'selected' : ''; ?>>Perempuan</option>
+                                <select id="jenis_kelamin" name="jenis_kelamin" class="form-control" value="<?= $biografi->jenis_kelamin ?>" disabled="true">
+                                    <option value="L" <?php echo $biografi->jenis_kelamin == 'L' ? 'selected' : ''; ?>>Laki-laki</option>
+                                    <option value="P" <?php echo $biografi->jenis_kelamin == 'P' ? 'selected' : ''; ?>>Perempuan</option>
                                 </select>
                                 <!-- <span class="help-block">Pilih jenis kelamin Anda. </span> -->
                             </div>
@@ -96,15 +82,13 @@
 
                             <div class="input-icon right">
                                 <i class="fa"></i>
-                                <input id="tanggal_lahir" name="tanggal_lahir" type="date" class="form-control" value="<?= date("m/d/Y", strtotime($pencarian->tanggal_lahir))?>" readonly="true"/>
+                                <input id="tanggal_lahir" name="tanggal_lahir" type="date" class="form-control" value="<?= date("m/d/Y", strtotime($biografi->tanggal_lahir))?>" readonly="true"/>
                                 
                             </div>
                         </div> -->
                     </div>
                 </div>
                 
-            </div>
-            <!-- </form> -->
         </div>
         <div class="modal-footer">
             
