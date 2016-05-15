@@ -217,15 +217,15 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a class="green" 
-                                                        href="<?php echo base_url() . '/admin/komentar_forum/' . $row->id_forum; ?>" 
+                                                        href="<?php echo base_url() . 'admin/komentar_forum/' . $row->id_forum; ?>" 
                                                         data-toggle="modal" data-target="#komentar_forum">Komentari                                                                        
                                                         </a>
                                                         <!-- <a class="green" 
-                                                        href="<?php echo base_url() . '/admin/ubah_komentar_forum/' . $row->id_forum; ?>" 
+                                                        href="<?php echo base_url() . 'admin/ubah_komentar_forum/' . $row->id_forum; ?>" 
                                                         data-toggle="modal" data-target="#ubah_komentar_forum">Ubah                                                                        
                                                         </a> -->
                                                         <a class="green" 
-                                                        href="<?php echo base_url() . '/admin/hapus_komentar_forum/' . $row->id_forum; ?>" 
+                                                        href="<?php echo base_url() . 'admin/hapus_komentar_forum/' . $row->id_forum; ?>" 
                                                         data-toggle="modal" data-target="#hapus_komentar_forum">Hapus                                                                        
                                                         </a>
                                                     </td>
@@ -300,7 +300,6 @@
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>assets/admin/pages/scripts/dbexpert/expert/pendidikan_formal.js"></script>
 <script src="<?php echo base_url(); ?>assets/admin/pages/scripts/table-managed.js"></script>
 <script src="<?php echo base_url(); ?>assets/chat/ajaxku_forum.php?base_url=<?php echo base_url(); ?>"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
@@ -317,7 +316,7 @@
         Demo.init(); // init demo features
         // BuatForum.init();
         TableManaged.init();
-        Ajaxku.init();
+        // Ajaxku.init();
     });
 </script>
 

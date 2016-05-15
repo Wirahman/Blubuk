@@ -653,12 +653,16 @@ class home extends CI_Controller
                     move_uploaded_file($file_tmp, $lokasi);
                 }
             }
+            
+            $chat_waktu = date('Y-m-d h:i:s', time());
+            $this->model_chat->update($this->input->post('id_chat'), array('waktu'=>$chat_waktu));
+
             $resp = $this->model_balas_chat->create($balas_chat);
             if($resp){
-                $this->session->set_flashdata('message', '<i class="fa fa-check"></i> Komentar chat Sudah Dibuat...');
+                $this->session->set_flashdata('message', '<i class="fa fa-check"></i> Chat Sudah Dikirim...');
                 redirect('home/chat_publik');
             }else{
-                $this->session->set_flashdata('message_gagal', '<i class="fa fa-times"></i> Komentar chat Gagal Dibuat...');
+                $this->session->set_flashdata('message_gagal', '<i class="fa fa-times"></i> Chat Gagal Dikirim...');
                 redirect('home/chat_publik');
             }
         }
@@ -684,40 +688,117 @@ class home extends CI_Controller
         $name = $this->session->userdata('username');
 
         if (isset($_POST['userid1'])){
+            $data['userid1'] = $this->input->post('userid1');
+            $data['userid2'] = $this->input->post('userid2');
+            $data1['userid1'] = $this->input->post('userid2');
+            $data1['userid2'] = $this->input->post('userid1');
 
-            $chat['userid1'] = $this->input->post('userid1');
-            $chat['email1'] = $this->input->post('email1');
-            $chat['nama1'] = $this->input->post('nama1');
-            $chat['foto_profil1'] = $this->input->post('foto_profil1');
-            $chat['message'] = $this->input->post('message');
+            $cek_database = $this->model_chat->get_database($data);
+            $cek_database1 = $this->model_chat->get_database1($data1);
 
-            $chat['userid2'] = $this->input->post('userid2');
-            $chat['email2'] = $this->input->post('email2');
-            $chat['nama2'] = $this->input->post('nama2');
-            $chat['foto_profil2'] = $this->input->post('foto_profil2');
-            $chat['waktu'] = date('Y-m-d h:i:s', time());
+            if($cek_database || $cek_database1){
+                $userid1 = $this->input->post('userid1');
+                $userid2 = $this->input->post('userid2');
+                $cek_id_chat1 = $this->model_chat->get_database($data);
+                $cek_id_chat2 = $this->model_chat->get_database1($data1);
+                $cek_id_chat = $cek_id_chat1 || $cek_id_chat2;
 
-            if(isset($_FILES['foto']['name'])){
-                $chat['foto'] = $_FILES['foto']['name'];
-                $file_name = $_FILES['foto']['name'];
-                $file_ext = strtolower(end(explode('.', $chat['foto'])));
-                $file_size = $_FILES['foto']['size'];
-                $file_tmp = $_FILES['foto']['tmp_name'];
-                $lokasi = 'images/chat/' . time() . '.' . $file_ext;
-                if ($file_size < 5242880) {
-                    $chat['foto'] = time() . "." . $file_ext;
-                    move_uploaded_file($file_tmp, $lokasi);
+                $balas_chat['id_chat'] = $cek_id_chat;
+                $balas_chat['user_id'] = $this->input->post('userid1');
+                $balas_chat['email'] = $this->input->post('email1');
+                $balas_chat['nama'] = $this->input->post('nama1');
+                $balas_chat['foto_profil'] = $this->input->post('foto_profil1');
+                $balas_chat['message'] = $this->input->post('message');
+                $balas_chat['waktu'] = date('Y-m-d h:i:s', time());
+
+                if(isset($_FILES['foto']['name'])){
+                    $balas_chat['foto'] = $_FILES['foto']['name'];
+                    $file_name = $_FILES['foto']['name'];
+                    $file_ext = strtolower(end(explode('.', $balas_chat['foto'])));
+                    $file_size = $_FILES['foto']['size'];
+                    $file_tmp = $_FILES['foto']['tmp_name'];
+                    $lokasi = 'images/balas_chat/' . time() . '.' . $file_ext;
+                    if ($file_size < 5242880) {
+                        $balas_chat['foto'] = time() . "." . $file_ext;
+                        move_uploaded_file($file_tmp, $lokasi);
+                    }
+                }
+
+                $chat_waktu = date('Y-m-d h:i:s', time());
+                $this->model_chat->update($cek_id_chat, array('waktu'=>$chat_waktu));
+
+                $resp = $this->model_balas_chat->create($balas_chat);
+                if($resp){
+                    $this->session->set_flashdata('berhasil', ' Chat Sudah Dikirim...');
+                    redirect('home/teman');
+                }else{
+                    $this->session->set_flashdata('gagal', '<i class="fa fa-times"></i> Chat Gagal Dikirim...');
+                    redirect('home/teman');
+                }
+            }else{
+                $chat['userid1'] = $this->input->post('userid1');
+                $chat['email1'] = $this->input->post('email1');
+                $chat['nama1'] = $this->input->post('nama1');
+                $chat['foto_profil1'] = $this->input->post('foto_profil1');
+                $chat['message'] = $this->input->post('message');
+
+                $chat['userid2'] = $this->input->post('userid2');
+                $chat['email2'] = $this->input->post('email2');
+                $chat['nama2'] = $this->input->post('nama2');
+                $chat['foto_profil2'] = $this->input->post('foto_profil2');
+                $chat['waktu'] = date('Y-m-d h:i:s', time());
+
+                if(isset($_FILES['foto']['name'])){
+                    $chat['foto'] = $_FILES['foto']['name'];
+                    $file_name = $_FILES['foto']['name'];
+                    $file_ext = strtolower(end(explode('.', $chat['foto'])));
+                    $file_size = $_FILES['foto']['size'];
+                    $file_tmp = $_FILES['foto']['tmp_name'];
+                    $lokasi = 'images/chat/' . time() . '.' . $file_ext;
+                    if ($file_size < 5242880) {
+                        $chat['foto'] = time() . "." . $file_ext;
+                        move_uploaded_file($file_tmp, $lokasi);
+                    }
+                }
+
+                $resp = $this->model_chat->create($chat);
+
+                $userid1 = $this->input->post('userid1');
+                $userid2 = $this->input->post('userid2');
+                $cek_id_chat1 = $this->model_chat->get_database($data);
+                $cek_id_chat2 = $this->model_chat->get_database1($data1);
+                $cek_id_chat = $cek_id_chat1 || $cek_id_chat2;
+
+                $balas_chat['id_chat'] = $cek_id_chat;
+                $balas_chat['user_id'] = $this->input->post('userid1');
+                $balas_chat['email'] = $this->input->post('email1');
+                $balas_chat['nama'] = $this->input->post('nama1');
+                $balas_chat['foto_profil'] = $this->input->post('foto_profil1');
+                $balas_chat['message'] = $this->input->post('message');
+                $balas_chat['waktu'] = date('Y-m-d h:i:s', time());
+
+                if(isset($_FILES['foto']['name'])){
+                    $balas_chat['foto'] = $_FILES['foto']['name'];
+                    $file_name = $_FILES['foto']['name'];
+                    $file_ext = strtolower(end(explode('.', $balas_chat['foto'])));
+                    $file_size = $_FILES['foto']['size'];
+                    $file_tmp = $_FILES['foto']['tmp_name'];
+                    $lokasi = 'images/balas_chat/' . time() . '.' . $file_ext;
+                    if ($file_size < 5242880) {
+                        $balas_chat['foto'] = time() . "." . $file_ext;
+                        move_uploaded_file($file_tmp, $lokasi);
+                    }
+                }
+                $req = $this->model_balas_chat->create($balas_chat);
+                if($resp && $req){
+                    $this->session->set_flashdata('berhasil', ' Chat Sudah Dikirim...');
+                    redirect('home/teman');
+                }else{
+                    $this->session->set_flashdata('gagal', '<i class="fa fa-times"></i> Chat Gagal Dikirim...');
+                    redirect('home/teman');
                 }
             }
 
-            $resp = $this->model_chat->create($chat);
-            if($resp){
-                $this->session->set_flashdata('berhasil', ' Chat Sudah Dikirim...');
-                redirect('home/teman');
-            }else{
-                $this->session->set_flashdata('gagal', '<i class="fa fa-times"></i> Chat Gagal Dikirim...');
-                redirect('home/teman');
-            }
         }
     }
 

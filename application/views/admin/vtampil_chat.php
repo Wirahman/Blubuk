@@ -5,7 +5,7 @@
             <form action="pop_up_chat" method="post" id="form_chat" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">        
                 <div class="form-body">
 
-                    <a class="close" href="<?php echo site_url('/home/teman') ?>"></a>                                                                                
+                    <a class="close" href="<?php echo site_url('/admin/teman') ?>"></a>                                                                                
                    
                    <span class="user-info">
                         <?php

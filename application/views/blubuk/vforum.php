@@ -217,7 +217,7 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a class="green" 
-                                                        href="<?php echo site_url() . '/home/komentar_forum/' . $row->id_forum; ?>" 
+                                                        href="<?php echo site_url() . 'home/komentar_forum/' . $row->id_forum; ?>" 
                                                         data-toggle="modal" data-target="#komentar_forum">Komentari                                                                        
                                                         </a>
                                                     </td>

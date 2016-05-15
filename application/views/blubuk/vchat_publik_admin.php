@@ -107,37 +107,57 @@
                                                 <td>
                                                     <div class="item">
                                                         <div class="item-head">
-                                                            Pengirim
+                                                            <!-- Pengirim -->
                                                             <div class="item-details">
                                                                 <span class="user-info">
                                                                     <?php
-                                                                    if ($row->foto_profil1 == null) {
-                                                                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                    if ($row->foto_profil1 == $this->session->userdata('foto')){
+
                                                                     }else{
-                                                                        $fname = $row->foto_profil1;
-                                                                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                        if ($row->foto_profil1 == null) {
+                                                                            echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                        }else{
+                                                                            $fname = $row->foto_profil1;
+                                                                            echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                        }
                                                                     }
                                                                    ?>                                                                                
                                                                 </span>
-                                                                <?php echo $row->nama1 ?>
+                                                                <?php
+                                                                if ($row->nama1 == $this->session->userdata('username')){
+
+                                                                }else{
+                                                                   echo $row->nama1;
+                                                                } 
+                                                                ?>
                                                             </div>
 
-                                                            Penerima
+                                                            <!-- Penerima -->
                                                             <div class="item-details">
                                                                 <span class="user-info">
                                                                     <?php
-                                                                    if ($row->foto_profil2 == null) {
-                                                                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                    if ($row->foto_profil2 == $this->session->userdata('foto')){
+
                                                                     }else{
-                                                                        $fname = $row->foto_profil2;
-                                                                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+
+                                                                        if ($row->foto_profil2 == null) {
+                                                                            echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                        }else{
+                                                                            $fname = $row->foto_profil2;
+                                                                            echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                        } 
                                                                     }
                                                                    ?>                                                                                
                                                                 </span>
-                                                                <?php echo $row->nama2 ?>
-                                                            </div>
+                                                                <?php
+                                                                if ($row->nama2 == $this->session->userdata('username')){
 
-                                                                <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($row->waktu)) ?></span>
+                                                                }else{
+                                                                   echo $row->nama2;
+                                                                } 
+                                                                ?>
+                                                            </div>
+                                                            <!-- <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($row->waktu)) ?></span> -->
                                                         </div>
                                                     </div>
                                                     <div class="item">
@@ -155,13 +175,14 @@
                                                                 }
                                                                 ?> 
                                                             </div>
-                                                            <div class="item-details">
+                                                            <!-- <div class="item-details">
                                                                 <span><?= $row->message ?></span>
-                                                            </div>
+                                                            </div> -->
                                                             <a class="green" 
                                                             href="<?php echo base_url() . 'admin/balas_chat/' . $row->id; ?>" 
                                                             data-toggle="modal" data-target="#balas_chat">Pesan                                                                        
                                                             </a>
+                                                            <br><br>
                                                         </div>
                                                     </div>
                                                 </td>

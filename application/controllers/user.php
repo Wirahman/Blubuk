@@ -696,6 +696,11 @@ class user extends CI_Controller
                     'foto_profil'=>time() . "_" . $file_name));
                 }
 
+                $namachat['nama1'] = $this->input->post('nama_lengkap');
+                $namachat['nama2'] = $this->input->post('nama_lengkap');
+                $this->model_biografi->update_chat1($id, $namachat);
+                $this->model_biografi->update_chat2($id, $namachat);
+
                 $resp = $this->model_biografi->update($id_update_biografi, $data);
                 if($resp >= 0){
                     $this->session->set_flashdata('berhasil', 'Biografi '.  $this->session->userdata('username')  . '  Berhasil Diubah.');

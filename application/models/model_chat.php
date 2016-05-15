@@ -38,7 +38,7 @@ class model_chat extends CI_Model {
         $this->db->from($this->table_name);
         $this->db->where('userid1', $id);
         $this->db->or_where('userid2', $id);
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('waktu', 'asc');
         $query = $this->db->get();
         return $query ? $query->result() : NULL;
     }
@@ -106,9 +106,27 @@ class model_chat extends CI_Model {
 		return $query ? $query->result() : NULL;
 	}
         
-
+	function get_database($data) {
+		$query = $this->db->get_where('chat',$data,1,0);
+		return $query->result();	
+	}
 	
+	function get_database1($data1) {
+		$query = $this->db->get_where('chat',$data1,1,0);
+		return $query->result();	
+	}
 	
+    function get_id_chat($data){
+		$this->db->select('id');
+		$query = $this->db->get_where('chat',$data,1,0);
+		return $query->result();	
+    }
+	
+    function get_id_chat1($data1){
+		$this->db->select('id');
+		$query = $this->db->get_where('chat',$data1,1,0);
+		return $query->result();	
+    }
 	
 	/* END of Advanced Model Functions */
 }

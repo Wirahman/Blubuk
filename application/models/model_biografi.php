@@ -146,5 +146,18 @@ class model_biografi extends CI_Model {
         return $query ? $query->result() : NULL;
     }
 
+    public function update_chat1($id, $data) {
+        $this->db->where('userid1', $id);
+        $this->db->update('chat', $data);
+        return $this->db->affected_rows();
+    }
+
+    public function update_chat2($id, $data) {
+        $this->db->where('userid2', $id);
+        $this->db->update('chat', $data);
+        return $this->db->affected_rows();
+    }
+
+
     /* END of Advanced Model Functions */
 }
