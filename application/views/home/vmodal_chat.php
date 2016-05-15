@@ -47,13 +47,8 @@
                 }
                 ?> 
             </div>                                                                                    
-<<<<<<< HEAD
             <div class="item-details">
                 <span id="chat_message"><?= $chat->message ?></span>
-=======
-            <!-- <div class="item-details">
-                <span><?= $chat->message ?></span>
->>>>>>> master
             </div>
             <br></br> -->
             <form action="balas_chat" method="post" id="form_chat_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
