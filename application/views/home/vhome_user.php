@@ -179,20 +179,20 @@
                         <div class="portlet-body">
                             <div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                 <div class="general-item-list">
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/allah.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/allah.jpg'); ?>" width="150px"/>
 
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/muhammad.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/muhammad.jpg'); ?>" width="150px"/>
                                     
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/RKS.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/RKS.jpg'); ?>" width="150px"/>
                                     
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/Bajaj.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/Bajaj.jpg'); ?>" width="150px"/>
 
                                     <a href="https://shopee.co.id/hanny_miushoppu" target="_blank">
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/miu shoppu.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/miu shoppu.jpg'); ?>" width="150px"/>
                                     </a>
                                     
                                     <a href="http://adf.ly/1Z0gGp" target="_blank">
-                                        <img src="<?php echo base_url(); ?>/images/sponsor/juado.jpg" width="150px"/>
+                                        <img src="<?php echo base_url('images/sponsor/juado.jpg'); ?>" width="150px"/>
                                     </a>
 
                                 </div>
@@ -235,10 +235,10 @@
                                                                         <span class="user-info">
                                                                             <?php
                                                                             if ($row->foto_user == null) {
-                                                                                echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                                echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                                                                             }else{
                                                                                 $fname = $row->foto_user;
-                                                                                echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                                echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                                                                             }
                                                                            ?>                                                                                
                                                                         </span>
@@ -267,7 +267,7 @@
                                                                             echo '';
                                                                         }else{
                                                                             $fname = $row->foto;
-                                                                            echo '<img src="'.base_url().'/images/status/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                                            echo '<img src="'.base_url('images/status/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                                                                         }
                                                                         ?> 
                                                                     </div>
@@ -335,10 +335,10 @@
                                                         <td>
                                                             <?php
                                                             if ($row['foto_user'] == null) {
-                                                                echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                                                             }else{
                                                                 $fname = $row['foto_user'];
-                                                                echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                                                             }
                                                            ?>  
                                                             <?php echo $row['name'] ?>       
@@ -355,7 +355,7 @@
                                                                 echo '';
                                                             }else{
                                                                 $fname = $row['foto'];
-                                                                echo '<img src="'.base_url().'/images/status/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                                echo '<img src="'.base_url('images/status/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                                                             }
                                                             ?> 
                                                         </td>
@@ -454,7 +454,7 @@
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/jQuery.js"></script>
 <!--script src="<?php echo base_url(); ?>assets/chat/ajaxku.js"></script-->
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku.php?base_url=<?php echo base_url(); ?>"></script>
+<script src="<?php echo base_url('assets/chat/ajaxku.php?base_url='.base_url()); ?>"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>

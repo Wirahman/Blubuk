@@ -175,7 +175,7 @@
                                                                     echo '';
                                                                 }else{
                                                                     $fname = $row->foto;
-                                                                    echo '<img src="'.base_url().'/images/chat/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                                    echo '<img src="'.base_url('/images/chat/'.$fname.'" width="150px"/>'); // substr, ngilangin ./
                                                                 }
                                                                 ?> 
                                                             </div>

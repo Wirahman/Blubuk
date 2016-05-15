@@ -6,10 +6,10 @@
             <span class="user-info">
                 <?php
                 if ($status->foto_user == null) {
-                    echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                 }else{
                     $fname = $status->foto_user;
-                    echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                 }
                ?>                                                                                        
             </span>
@@ -27,7 +27,7 @@
                     echo '';
                 }else{
                     $fname = $status->foto;
-                    echo '<img src="'.base_url().'/images/status/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/status/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                 }
                 ?> 
             </div>                                                                                        
@@ -51,10 +51,10 @@
                 <span class="user-info">
                     <?php
                     if ($komentar_desc->foto_user == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $komentar_desc->foto_user;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                    ?>                                                                                
                 </span>
@@ -74,7 +74,7 @@
                             echo '';
                         }else{
                             $fname = $komentar_desc->foto;
-                            echo '<img src="'.base_url().'/images/komentar_status/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                            echo '<img src="'.base_url('images/komentar_status/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                         }
                         ?> 
                 </div>
@@ -131,7 +131,7 @@
     </div>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku_chat.php?base_url=<?php echo base_url(); ?>"></script>
+<script src="<?php echo base_url('assets/chat/ajaxku_chat.php?base_url='.base_url()); ?>"></script>
 
 <script type="text/javascript">
 	var statusIsi = document.getElementById('status_isi');

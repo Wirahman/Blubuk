@@ -185,6 +185,9 @@
                                             <tbody>
                                                 <?php if(!empty($data_desc)): ?>
                                                 <?php $no = 1; ?>
+                                                <script type="text/javascript">
+                                                	var listOfIsiForum = [];
+                                                </script>
                                                 <?php foreach ($data_desc as $row): ?>
                                                 <tr>
                                                     <td style="text-align: center;">
@@ -196,15 +199,18 @@
                                                             echo '';
                                                         }else{
                                                             $fname = $row->foto_forum;
-                                                            echo '<img src="'.base_url().'/images/forum/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                            echo '<img src="'.base_url('images/forum/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                                                         }
                                                         ?> 
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <?= $row->judul_forum ?>
                                                     </td>
-                                                    <td style="text-align: center;">
+                                                    <td id="isi_forum_<?php echo $no; ?>" style="text-align: center;">
                                                         <?= substr($row->isi_forum , 0, 100)?>
+                                                        <script type="text/javascript">
+                                                        	listOfIsiForum.push('isi_forum_<?php echo $no; ?>');
+                                                        </script>
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <?= 
@@ -217,13 +223,14 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a class="green" 
-                                                        href="<?php echo site_url() . 'home/komentar_forum/' . $row->id_forum; ?>" 
+                                                        href="<?php echo site_url('home/komentar_forum/' . $row->id_forum); ?>" 
                                                         data-toggle="modal" data-target="#komentar_forum">Komentari                                                                        
                                                         </a>
                                                     </td>
                                                     <div class="modal fade" id="komentar_forum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     </div>
                                                 </tr>
+                                            <?php $no ++; ?>
                                             <?php endforeach; ?>
                                             </tbody>
                                             <?php else: ?>
@@ -289,7 +296,7 @@
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/admin/pages/scripts/table-managed.js"></script>
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku_forum.php?base_url=<?php echo base_url(); ?>"></script>
+<script src="<?php echo base_url('assets/chat/ajaxku_forum.php?base_url='.base_url()); ?>"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
 <!--<script src="<?php echo base_url(); ?>assets/admin/pages/scripts/blubuk/forum/buat_forum.js"></script>-->
 
@@ -306,6 +313,12 @@
         TableManaged.init();
         Ajaxku.init();
     });
+
+    for (var i = 0; i < listOfIsiForum.length; i ++) {
+        var isiForum = document.getElementById(listOfIsiForum[i]);
+        var stringIsiForum = isiForum.innerHTML;
+        isiForum.innerHTML = renderEmot(stringIsiForum);
+    }
 </script>
 
     <!-- END JAVASCRIPTS -->

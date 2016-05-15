@@ -163,7 +163,7 @@
 </div>
 
 <script src="<?php echo base_url(); ?>assets/chat/js/jQuery.js"></script>
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku_chat.php?base_url=<?php echo base_url(); ?>"></script>
+<script src="<?php echo base_url('assets/chat/ajaxku_chat.php?base_url='.base_url()); ?>"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
 
 

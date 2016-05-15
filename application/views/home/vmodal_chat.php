@@ -7,17 +7,17 @@
                 <?php
                 if ($chat->foto_profil1 == $this->session->userdata('foto')){
                     if ($chat->foto_profil2 == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $chat->foto_profil2;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                 }else{
                     if ($chat->foto_profil1 == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $chat->foto_profil1;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                 }
 
@@ -43,7 +43,7 @@
                     echo '';
                 }else{
                     $fname = $chat->foto;
-                    echo '<img src="'.base_url().'/images/chat/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/chat/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                 }
                 ?> 
             </div>                                                                                    
@@ -70,10 +70,10 @@
                 <span class="user-info">
                     <?php
                     if ($chat_desc_item->foto_profil == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $chat_desc_item->foto_profil;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                    ?>                                                                                
                 </span>
@@ -96,7 +96,7 @@
                             echo '';
                         }else{
                             $fname = $chat_desc_item->foto;
-                            echo '<img src="'.base_url().'/images/komentar_chat/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                            echo '<img src="'.base_url('images/balas_chat/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                         }
                         ?> 
                 </div>
@@ -140,14 +140,14 @@
     </div>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/chat/js/jQuery.js"></script>
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku_chat.php?base_url=<?php echo base_url(); ?>"></script>
-<script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
+<script src="<?php echo base_url('assets/chat/js/jQuery.js'); ?>"></script>
+<script src="<?php echo base_url('assets/chat/ajaxku_chat.php?base_url='.base_url()); ?>"></script>
+<script src="<?php echo base_url('assets/chat/js/bootstrap.js'); ?>"></script>
 
 <script type="text/javascript">
-	var chatMessage = document.getElementById('chat_message');
-    var stringChatMessage = chatMessage.innerHTML;
-    chatMessage.innerHTML = renderEmot(stringChatMessage);
+	//var chatMessage = document.getElementById('chat_message');
+    //var stringChatMessage = chatMessage.innerHTML;
+    //chatMessage.innerHTML = renderEmot(stringChatMessage);
 
     for (var i = 0; i < listOfChatDesc.length; i ++) {
         var chatDesc = document.getElementById(listOfChatDesc[i]);

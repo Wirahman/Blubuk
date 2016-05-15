@@ -6,10 +6,10 @@
             <span class="user-info">
                 <?php
                 if ($forum->foto_user == null) {
-                    echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                 }else{
                     $fname = $forum->foto_user;
-                    echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                 }
                ?>                                                                                        
             </span>
@@ -27,17 +27,25 @@
                     echo '';
                 }else{
                     $fname = $forum->foto_forum;
-                    echo '<img src="'.base_url().'/images/forum/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/forum/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                 }
                 ?> 
             </div>                                                                                        
             <div class="item-details">
                 <span class="bold uppercase"><?= $forum->judul_forum ?></span>
             </div>                                                                                        
+            <?php $no = 1; ?>
+            <script type="text/javascript">
+            	var listOfIsiForum = [];
+            </script>
             <div class="item-details">
-                <span><?= $forum->isi_forum ?></span>
+                <span id="isi_forum_<?php echo $no; ?>"><?= $forum->isi_forum ?></span>
+                <script type="text/javascript">
+                	listOfIsiForum.push('isi_forum_<?php echo $no; ?>');
+                </script>
             </div>
             <br></br>
+            <?php $no ++; ?>
             <form action="komentar_forum" method="post" id="form_forum_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
                 <div class="form-body">
                                      
@@ -48,16 +56,14 @@
                         <span class="caption-subject theme-font bold uppercase">forum Teman</span>
                     </div>
                 </div>
-                               
-                <?php $no = 1; ?>
                 <?php foreach ($forum_desc as $forum_desc): ?>
                 <span class="user-info">
                     <?php
                     if ($forum_desc->foto_user == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $forum_desc->foto_user;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                    ?>                                                                                
                 </span>
@@ -66,7 +72,10 @@
                     <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($forum_desc->waktu)) ?></span>
                 </div>
                 <div class="item-details">
-                    <span><?= $forum_desc->isi ?></span>
+                    <span id="isi_forum_<?php echo $no; ?>"><?= $forum_desc->isi ?></span>
+                    <script type="text/javascript">
+                    	listOfIsiForum.push('isi_forum_<?php echo $no; ?>');
+                    </script>
                 </div>
                 <div class="item-details">
                         <?php
@@ -77,7 +86,7 @@
                             echo '';
                         }else{
                             $fname = $forum_desc->foto;
-                            echo '<img src="'.base_url().'/images/komentar_forum/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                            echo '<img src="'.base_url('images/komentar_forum/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                         }
                         ?> 
                 </div>
@@ -133,3 +142,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    for (var i = 0; i < listOfIsiForum.length; i ++) {
+        var isiForum = document.getElementById(listOfIsiForum[i]);
+        var stringIsiForum = isiForum.innerHTML;
+        isiForum.innerHTML = renderEmot(stringIsiForum);
+    }
+</script>
