@@ -47,7 +47,7 @@
                 }
                 ?> 
             </div>                                                                                    
-            <div class="item-details">
+            <!-- <div class="item-details">
                 <span id="chat_message"><?= $chat->message ?></span>
             </div>
             <br></br> -->
