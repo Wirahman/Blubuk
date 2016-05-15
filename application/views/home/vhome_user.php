@@ -179,20 +179,20 @@
                         <div class="portlet-body">
                             <div class="scroller" style="height: 305px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                 <div class="general-item-list">
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/allah.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/allah.jpg'); ?>" width="150px"/>
 
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/muhammad.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/muhammad.jpg'); ?>" width="150px"/>
                                     
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/RKS.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/RKS.jpg'); ?>" width="150px"/>
                                     
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/Bajaj.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/Bajaj.jpg'); ?>" width="150px"/>
 
                                     <a href="https://shopee.co.id/hanny_miushoppu" target="_blank">
-                                    <img src="<?php echo base_url(); ?>/images/sponsor/miu shoppu.jpg" width="150px"/>
+                                    <img src="<?php echo base_url('images/sponsor/miu shoppu.jpg'); ?>" width="150px"/>
                                     </a>
                                     
                                     <a href="http://adf.ly/1Z0gGp" target="_blank">
-                                        <img src="<?php echo base_url(); ?>/images/sponsor/juado.jpg" width="150px"/>
+                                        <img src="<?php echo base_url('images/sponsor/juado.jpg'); ?>" width="150px"/>
                                     </a>
 
                                 </div>
@@ -220,11 +220,11 @@
                                         <thead>
                                         </thead>
                                         <tbody>                                
-                                            <?php if (!empty($data_desc_pribadi)): ?>
                                             <script type="text/javascript">
                                                 //Disini
                                                 var listOfStatusPribadi = [];
                                             </script>
+                                            <?php if (!empty($data_desc_pribadi)): ?>
                                                 <?php $no = 1; ?>
                                                 <?php foreach ($data_desc_pribadi as $row): ?>
                                                     <tr>
@@ -235,10 +235,10 @@
                                                                         <span class="user-info">
                                                                             <?php
                                                                             if ($row->foto_user == null) {
-                                                                                echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                                echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                                                                             }else{
                                                                                 $fname = $row->foto_user;
-                                                                                echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                                echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                                                                             }
                                                                            ?>                                                                                
                                                                         </span>
@@ -267,16 +267,16 @@
                                                                             echo '';
                                                                         }else{
                                                                             $fname = $row->foto;
-                                                                            echo '<img src="'.base_url().'/images/status/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                                            echo '<img src="'.base_url('images/status/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                                                                         }
                                                                         ?> 
                                                                     </div>
                                                                     <a class="green" 
-                                                                    href="<?php echo base_url() . 'home/komentar_status/' . $row->id; ?>" 
+                                                                    href="<?php echo site_url('home/komentar_status/' . $row->id); ?>" 
                                                                     data-toggle="modal" data-target="#komentar_status">Komentari                                                                        
                                                                     </a>
                                                                     <a class="green" 
-                                                                    href="<?php echo base_url() . 'home/hapus_status/' . $row->id; ?>" 
+                                                                    href="<?php echo site_url('home/hapus_status/' . $row->id); ?>" 
                                                                     data-toggle="modal" data-target="#hapus_status">Hapus                                                                        
                                                                     </a>
                                                                     <div class="modal fade" id="hapus_status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -319,6 +319,11 @@
                                         <?php 
                                         // Chek apakah variable array_ditambah_teman kosong atau tidak
                                         if (!empty($data_desc)):?>
+                                            <script type="text/javascript">
+                                                //Disini
+                                                var listOfStatusTeman = [];
+                                            </script>
+                                            <?php $no = 1; ?>
                                             <?php 
                                             // Pecah array dalam variable array_ditambah_teman
                                             $teman = explode(",", $data_desc);
@@ -326,19 +331,14 @@
                                                 $sql_teman = mysql_query("SELECT * FROM status WHERE user_id = '$value' order by id desc") or die(mysql_error());
                                                 while($row=mysql_fetch_array($sql_teman)):
                                                 ?>
-                                            <script type="text/javascript">
-                                                //Disini
-                                                var listOfStatusTeman = [];
-                                            </script>
-                                            <?php $no = 1; ?>
                                                     <tr>
                                                         <td>
                                                             <?php
                                                             if ($row['foto_user'] == null) {
-                                                                echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                                                                echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                                                             }else{
                                                                 $fname = $row['foto_user'];
-                                                                echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                                                                echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                                                             }
                                                            ?>  
                                                             <?php echo $row['name'] ?>       
@@ -355,7 +355,7 @@
                                                                 echo '';
                                                             }else{
                                                                 $fname = $row['foto'];
-                                                                echo '<img src="'.base_url().'/images/status/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                                echo '<img src="'.base_url('images/status/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                                                             }
                                                             ?> 
                                                         </td>
@@ -374,13 +374,14 @@
                                                     <tr>
                                                         <td>
                                                             <a class="green" 
-                                                            href="<?php echo base_url() . 'home/komentar_status/' . $row['id']; ?>" 
+                                                            href="<?php echo site_url('home/komentar_status/' . $row['id']); ?>" 
                                                             data-toggle="modal" data-target="#komentar_status">Komentari                                                                        
                                                             </a>
                                                             <div class="modal fade" id="komentar_status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                             </div>
                                                         </td>
                                                     </tr>
+                                        <?php $no ++; ?>
                                         <?php endwhile; ?>
                                         <?php endforeach; ?>
                                         <?php else: ?>
@@ -452,7 +453,8 @@
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/jQuery.js"></script>
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku.js"></script>
+<!--script src="<?php echo base_url(); ?>assets/chat/ajaxku.js"></script-->
+<script src="<?php echo base_url('assets/chat/ajaxku.php?base_url='.base_url()); ?>"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>

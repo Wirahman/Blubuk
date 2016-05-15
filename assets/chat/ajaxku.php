@@ -1,7 +1,60 @@
 $(document).ready(function()
 {
+			//load pesan
+			// function ambilpesan()
+			// {
+			// 	$(".boxpesan").load("ambil.php");
+			// 	var con = document.getElementById("boxpesan");
+			// 	con.scrollTop = con.scrollHeight;
+			// }
+			// setInterval(ambilpesan,1000);
+
+			//load online
+			// function ol()
+			// {
+			// $(".boxonline").load("online.php");	
+			// }
+			// setInterval(ol,1000);
+
+			//kirim pesan chat
+			// $("#formpesan").submit(function()
+			// {
+			// 	var pesan=$(".input-xlarge").val();
+			// 	$.ajax({
+			// 		url : 'kirim.php',
+			// 		type : 'POST',
+			// 		data : 'pesan='+pesan,
+			// 		success : function(pesan)
+			// 		{
+			// 			// html5 DOM audio play
+			// 			var suara=document.getElementById("suara");
+			// 			suara.play();
+			// 			if(pesan=="terkirim")
+			// 			{
+			// 				$(".input-xlarge").val("");
+			// 			}
+			// 			else
+			// 			{
+			// 				return false;
+			// 			}
+			// 		},
+			// 		});
+			// 	return false;
+			
+			// });
+
+			//hide html audio
 			var audio=$('#suara');
 			audio.hide();
+
+			//load pesan chat
+			// function ambilpesan()
+			// {
+			// 	$("#boxpesan").load("ambil.php");
+			// 	var con = document.getElementById("boxpesan");
+			// 	con.scrollTop = con.scrollHeight;
+			// }
+			// setInterval(ambilpesan,1000);
 
 			//load emoticon
 			$("#emot").popover({
@@ -46,7 +99,7 @@ $(document).ready(function()
 			"<img src='<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/nangis.gif' title='[nangis1]' onClick=\"addemot('[nangis1]')\">"+
 			"<img src='<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/sedih.gif' title='[sedih1]' onClick=\"addemot('[sedih1]')\">"+
 			"<img src='<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/smile.gif' title='[senyum1]' onClick=\"addemot('[senyum1]')\">";
-			// "<img src='<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/bonus.png' title='[Apa Ini???]' onClick=\"addemot('[Apa Ini???]')\">";
+			// "<img src='assets/chat/emote/1/bonus.png' title='[Apa Ini???]' onClick=\"addemot('[Apa Ini???]')\">";
 
 			}
 			});
@@ -56,7 +109,7 @@ $(document).ready(function()
 // function add emot to chat form
 function addemot(emot)
 {
-	isi_forum.value+=" "+emot;
+	isi.value+=" "+emot;
 }
 
 var emotImageMap = {
@@ -95,7 +148,8 @@ var emotImageMap = {
 	"\\[murung1\\]":"<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/murung.gif",
 	"\\[nangis1\\]":"<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/nangis.gif",
 	"\\[sedih1\\]":"<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/sedih.gif",
-	"\\[senyum1\\]":"<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/smile.gif"};
+	"\\[senyum1\\]":"<?php echo $_GET['base_url']; ?>/assets/chat/emote/1/smile.gif"
+};
 function stringReplaceAll(string, search, replacement) {
 	return string.replace(new RegExp(search, 'g'), replacement);
 }

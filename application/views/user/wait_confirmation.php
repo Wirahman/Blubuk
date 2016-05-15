@@ -104,6 +104,13 @@
 								Saat Ini Akun Anda Belum Aktif... Untuk Mengaktifkannya, Silahkan Anda Buka Email Anda di <?php echo $this->session->userdata('email');?>... <br><br><br>
 								<a href="<?php echo base_url();?>/user/resend_email" class="green"><i class="fa fa-share"></i> Kirim Ulang Email Konfirmasi</a>&nbsp;&nbsp;
 								<a href="<?php echo base_url();?>/user/change_email_configuration" class="green"><i class="fa fa-refresh"></i> Ganti Alamat Email</a>
+								<?php
+                                	// Jika environment adalah development, konfirmasi via email di-bypass.
+                                	// Jadi, cetak link konfirmasi di sini.
+		                            if (defined('ENVIRONMENT') and (ENVIRONMENT == 'development')) {
+		                            	echo '<br /><br />', anchor($this->session->flashdata('link_konfirmasi'));
+		                            }
+                                ?>
 							</div>
 							<div id="results"></div>
 							<!-- END EXAMPLE TABLE PORTLET-->

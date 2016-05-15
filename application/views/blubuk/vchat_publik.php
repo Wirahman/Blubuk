@@ -102,6 +102,10 @@
                                 <tbody>                            
                                     <?php if (!empty($chat)): ?>
                                         <?php $no = 1; ?>
+                                        <script type="text/javascript">
+                                            //Disini
+                                            var listOfPesan = [];
+                                        </script>
                                         <?php foreach ($chat as $row): ?>
                                             <tr>
                                                 <td>
@@ -171,15 +175,18 @@
                                                                     echo '';
                                                                 }else{
                                                                     $fname = $row->foto;
-                                                                    echo '<img src="'.base_url().'/images/chat/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                                                                    echo '<img src="'.base_url('/images/chat/'.$fname.'" width="150px"/>'); // substr, ngilangin ./
                                                                 }
                                                                 ?> 
                                                             </div>
-                                                            <!-- <div class="item-details">
-                                                                <span><?= $row->message ?></span>
-                                                            </div> -->
+                                                            <!--div class="item-details">
+                                                                <span id="pesan_<?php echo $no; ?>"><?php echo $row->message ?></span>
+		                                                        <script type="text/javascript">
+		                                                            listOfPesan.push('pesan_<?php echo $no; ?>');                                                                            
+		                                                        </script>
+                                                            </div-->
                                                             <a class="green" 
-                                                            href="<?php echo base_url() . 'home/balas_chat/' . $row->id; ?>" 
+                                                            href="<?php echo site_url('home/balas_chat/' . $row->id); ?>" 
                                                             data-toggle="modal" data-target="#balas_chat">Pesan                                                                        
                                                             </a>
                                                         </div>
@@ -245,7 +252,8 @@
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/jQuery.js"></script>
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku.js"></script>
+<!--script src="<?php echo base_url(); ?>assets/chat/ajaxku.js"></script-->
+<script src="<?php echo base_url(); ?>assets/chat/ajaxku.php?base_url=<?php echo base_url(); ?>"></script>
 <script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
@@ -273,6 +281,12 @@
         KomentarStatus.init();
         Ajaxku.init();
     });
+
+    for (var i = 0; i < listOfPesan.length; i ++) {
+        var pesan = document.getElementById(listOfPesan[i]);
+        var stringPesan = pesan.innerHTML;
+        pesan.innerHTML = renderEmot(stringPesan);
+    }
 </script>
 
     <!-- END JAVASCRIPTS -->

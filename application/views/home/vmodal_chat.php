@@ -7,17 +7,17 @@
                 <?php
                 if ($chat->foto_profil1 == $this->session->userdata('foto')){
                     if ($chat->foto_profil2 == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $chat->foto_profil2;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                 }else{
                     if ($chat->foto_profil1 == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
                         $fname = $chat->foto_profil1;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                 }
 
@@ -43,12 +43,12 @@
                     echo '';
                 }else{
                     $fname = $chat->foto;
-                    echo '<img src="'.base_url().'/images/chat/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                    echo '<img src="'.base_url('images/chat/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                 }
                 ?> 
             </div>                                                                                    
             <!-- <div class="item-details">
-                <span><?= $chat->message ?></span>
+                <span id="chat_message"><?= $chat->message ?></span>
             </div>
             <br></br> -->
             <form action="balas_chat" method="post" id="form_chat_status" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
@@ -63,37 +63,44 @@
                 </div>
                                
                 <?php $no = 1; ?>
-                <?php foreach ($chat_desc as $chat_desc): ?>
+                <script type="text/javascript">
+                	var listOfChatDesc = [];
+                </script>
+                <?php foreach ($chat_desc as $chat_desc_item): ?>
                 <span class="user-info">
                     <?php
-                    if ($chat_desc->foto_profil == null) {
-                        echo '<img src="'.base_url().'/images/foto_profil/no_profil.jpg" width="20" height="20" />'; // substr, ngilangin ./
+                    if ($chat_desc_item->foto_profil == null) {
+                        echo '<img src="'.base_url('images/foto_profil/no_profil.jpg').'" width="20" height="20" />'; // substr, ngilangin ./
                     }else{
-                        $fname = $chat_desc->foto_profil;
-                        echo '<img src="'.base_url().'/images/foto_profil/'.$fname.'" width="20" height="20" />'; // substr, ngilangin ./
+                        $fname = $chat_desc_item->foto_profil;
+                        echo '<img src="'.base_url('images/foto_profil/'.$fname).'" width="20" height="20" />'; // substr, ngilangin ./
                     }
                    ?>                                                                                
                 </span>
                 <div class="item-details">
-                    <span><?= $chat_desc->nama ?></span>
-                    <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($chat_desc->waktu)) ?></span>
+                    <span><?= $chat_desc_item->nama ?></span>
+                    <span class="item-label"><?= date("d-m-Y h:i:s", strtotime($chat_desc_item->waktu)) ?></span>
                 </div>
                 <div class="item-details">
-                    <span><?= $chat_desc->message ?></span>
+                    <span id="chat_desc_item_<?php echo $no; ?>"><?= $chat_desc_item->message ?></span>
+                    <script type="text/javascript">
+                    	listOfChatDesc.push('chat_desc_item_<?php echo $no; ?>');
+                    </script>
                 </div>
                 <div class="item-details">
                         <?php
-                        $chat_desc->foto;
-                        $file_ext = strtolower(end(explode('.', $chat_desc->foto)));
+                        $chat_desc_item->foto;
+                        $file_ext = strtolower(end(explode('.', $chat_desc_item->foto)));
 
                         if ($file_ext == null) {
                             echo '';
                         }else{
-                            $fname = $chat_desc->foto;
-                            echo '<img src="'.base_url().'/images/komentar_chat/'.$fname.'" width="150px"/>'; // substr, ngilangin ./
+                            $fname = $chat_desc_item->foto;
+                            echo '<img src="'.base_url('images/balas_chat/'.$fname).'" width="150px"/>'; // substr, ngilangin ./
                         }
                         ?> 
                 </div>
+                <?php $no ++; ?>
                 <?php endforeach; ?>
                 <?php else: ?>
                 <?php endif; ?>
@@ -133,6 +140,18 @@
     </div>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/chat/js/jQuery.js"></script>
-<script src="<?php echo base_url(); ?>assets/chat/ajaxku_chat.php?base_url=<?php echo base_url(); ?>"></script>
-<script src="<?php echo base_url(); ?>assets/chat/js/bootstrap.js"></script>
+<script src="<?php echo base_url('assets/chat/js/jQuery.js'); ?>"></script>
+<script src="<?php echo base_url('assets/chat/ajaxku_chat.php?base_url='.base_url()); ?>"></script>
+<script src="<?php echo base_url('assets/chat/js/bootstrap.js'); ?>"></script>
+
+<script type="text/javascript">
+	//var chatMessage = document.getElementById('chat_message');
+    //var stringChatMessage = chatMessage.innerHTML;
+    //chatMessage.innerHTML = renderEmot(stringChatMessage);
+
+    for (var i = 0; i < listOfChatDesc.length; i ++) {
+        var chatDesc = document.getElementById(listOfChatDesc[i]);
+        var stringChatDesc = chatDesc.innerHTML;
+        chatDesc.innerHTML = renderEmot(stringChatDesc);
+    }
+</script>

@@ -225,7 +225,7 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a target = "blank"  class="green" 
-                                                        href="<?php echo base_url() . '/user/lihat_komentar_forum/' . $row->id_forum; ?>">
+                                                        href="<?php echo site_url('/user/lihat_komentar_forum/' . $row->id_forum); ?>">
                                                         Lihat Forum                                                                        
                                                         </a>
                                                     </td>

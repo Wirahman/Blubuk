@@ -196,17 +196,22 @@ class user extends CI_Controller
 
                     $this->load->helper('rkspandawa');
                     $code = base64url_encode(md5($users['registration_datetime'] . $users['email']) . $users['email']);
-                    $confirmation_url = base_url() . "user/confirm_user/" .$code;
+                    $confirmation_url = site_url("user/confirm_user/" .$code);
                     $message = str_replace("#url", $confirmation_url, $data['message']);
                     $message = str_replace("#name", $users['name'], $message);
 
                     // Mengirim Email Konfirmasi yang ada di table setting dalam database
-                    $this->load->library('email');
-                    $this->email->from($data['sender_email'],$data['sender_name']);
-                    $this->email->to($users['email']);
-                    $this->email->message($message);
-                    $this->email->subject($data['subject']);
-                    $this->email->send();
+                    if (defined('ENVIRONMENT') and (ENVIRONMENT == 'development')) {
+                    	// Jika mode environment adalah development, bypass pengiriman email.
+                    	$this->session->set_flashdata('link_konfirmasi', $confirmation_url);
+                    } else {
+		                $this->load->library('email');
+		                $this->email->from($data['sender_email'],$data['sender_name']);
+		                $this->email->to($users['email']);
+		                $this->email->message($message);
+		                $this->email->subject($data['subject']);
+		                $this->email->send();
+                    }
                     
                     $this->session->set_flashdata('berhasil', 'Pendaftaran Telah Dilakukan...');
                     redirect('user/wait_confirmation'); 
@@ -271,17 +276,22 @@ class user extends CI_Controller
 
                 $this->load->helper('rkspandawa');
                 $code = base64url_encode(md5($users['registration_datetime'] . $users['email']) . $users['email']);
-                $confirmation_url = base_url() . "user/confirm_user/" .$code;
+                $confirmation_url = site_url("user/confirm_user/" .$code);
                 $message = str_replace("#url", $confirmation_url, $data['message']);
                 $message = str_replace("#name", $users['name'], $message);
 
                 // Mengirim Email Konfirmasi yang ada di table setting dalam database
-                $this->load->library('email');
-                $this->email->from($data['sender_email'],$data['sender_name']);
-                $this->email->to($users['email']);
-                $this->email->message($message);
-                $this->email->subject($data['subject']);
-                $this->email->send();
+                if (defined('ENVIRONMENT') and (ENVIRONMENT == 'development')) {
+                	// Jika mode environment adalah development, bypass pengiriman email.
+                	$this->session->set_flashdata('link_konfirmasi', $confirmation_url);
+                }else {
+		            $this->load->library('email');
+		            $this->email->from($data['sender_email'],$data['sender_name']);
+		            $this->email->to($users['email']);
+		            $this->email->message($message);
+		            $this->email->subject($data['subject']);
+		            $this->email->send();
+                }
                 
                 $msg = "<i class='fa fa-check'></i> Pendaftaran Telah Dilakukan... Silahkan Konfirmasi Akun di Email Anda...";
                 $resp = array('status'=>'success','message'=>$msg);

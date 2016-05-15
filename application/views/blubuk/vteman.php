@@ -150,7 +150,7 @@
                                                 <?= $row['name'] ?>
 
                                                 <a class="green" 
-                                                href="<?php echo base_url() . 'home/terima_teman/' . $row['id']; ?>" 
+                                                href="<?php echo site_url('home/terima_teman/' . $row['id']); ?>" 
                                                 data-toggle="modal" data-target="#terima_teman"> 
                                                     <button class="btn btn-info btn-success">
                                                         <i class="fa fa-eye"></i> Lihat
@@ -214,7 +214,7 @@
                                                 <?= $row['name'] ?>
 
                                                 <a class="green" 
-                                                href="<?php echo base_url() . 'home/profil_teman/' . $row['id']; ?>" 
+                                                href="<?php echo site_url('home/profil_teman/' . $row['id']); ?>" 
                                                 data-toggle="modal" data-target="#profil_teman"> 
                                                     <button class="btn btn-info btn-success">
                                                         <i class="fa fa-eye"></i> Lihat
@@ -222,7 +222,7 @@
                                                 </a>
 
                                                 <a class="green" 
-                                                href="<?php echo base_url() . 'home/pop_up_chat/' . $row['id']; ?>" 
+                                                href="<?php echo site_url('home/pop_up_chat/' . $row['id']); ?>" 
                                                 data-toggle="modal" data-target="#pop_up_chat"> 
                                                     <button class="btn btn-success">
                                                         <i class="fa fa-envelope"></i> Pesan
